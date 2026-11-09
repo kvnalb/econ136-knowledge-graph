@@ -7,7 +7,7 @@
    "<b>Time → States → Payoffs → Prices → Portfolios → No-arbitrage → SDF</b> (L1 “big picture”).",
    "<b>Fixed income = the SDF along the time axis:</b> zero price P(T) = E[m<sub>t+T</sub>] → coupon bonds are portfolios of zeros (LOOP) → spot rates, YTM and forwards are translations of zero prices → duration and convexity measure how prices move when discounting changes.",
    "<b>Equity = the same pricing equation with an infinite, growing payoff:</b> P = E[m(P + D)] → DDM → Gordon P = D/(R − g), growth g = ROE·b, value created only if ROE &gt; R (PVGO). Valuation ratios are rearrangements of it: D/P = R − g, P/E = 1/R + PVGO/E; Campbell–Shiller shows they mostly forecast returns.",
-   "<b>Uncertainty made explicit:</b> states → random variables → (conditional) expectations → prices. <b>MPT</b> is the investor’s problem with risk measured by variance: portfolio arithmetic → diversification leaves only systematic risk → CAL / tangency portfolio → mutual fund theorem. <b>CAPM:</b> markets clear, so the market portfolio is the tangency portfolio and expected returns depend on β.",
+   "<b>Uncertainty made explicit:</b> states → random variables → (conditional) expectations → prices. <b>MPT</b> is the investor’s problem with risk measured by variance: portfolio arithmetic → diversification leaves only systematic risk → CAL / tangency portfolio → mutual fund theorem. <b>CAPM:</b> markets clear, so the market portfolio is the tangency portfolio and expected returns depend on β. That is a restriction on the SDF, m = a − bR<sub>M</sub>: all priced risk is one-dimensional. Anomalies and the Roll critique motivate multiple factors.",
    "Everything else is a definition built from these, a convention for measuring them, or a consequence of two rules (prices are linear; no free lunch).",
    "“Prices are disciplined by arbitrage, interpreted through risk, and sometimes explained by equilibrium.”"
   ]
@@ -319,9 +319,37 @@
     "CAPMAS",
     "MKT",
     "MKTT",
-    "CML",
+    "CML"
+   ],
+   "color": "#8a2e5c"
+  },
+  {
+   "id": "CAPMB",
+   "title": "CAPM II — beta, the SDF & empirics",
+   "nodes": [
+    "EQTR",
     "CAPMR",
     "CAPMNOT",
+    "QPR",
+    "LOWC",
+    "MVEB",
+    "BEST",
+    "SBL",
+    "CMP",
+    "MAFF",
+    "CORRM",
+    "ONED",
+    "BFROMM",
+    "PRR",
+    "SML",
+    "ALPHA",
+    "GRS",
+    "SORT",
+    "ANOM",
+    "ANOMI",
+    "ROLL",
+    "ONEF",
+    "BENCH",
     "APT"
    ],
    "color": "#8a2e5c"
@@ -873,7 +901,7 @@
   "RQ": {
    "type": "res",
    "label": "1 = E[m(1 + R)]",
-   "tags": "L5",
+   "tags": "L5·CAPM II",
    "details": [
     "Divide P(X) = E[mX] by P(X) and use X/P(X) = 1 + R."
    ]
@@ -898,7 +926,7 @@
   "PREM": {
    "type": "key",
    "label": "Risk premium<br/>E[R] − R<sub>f</sub> = −Cov(m, R) / E[m]",
-   "tags": "L1·L5",
+   "tags": "L1·L5·CAPM II",
    "details": [
     "Substitute 1/E[m] = 1 + R<sub>f</sub> and subtract 1 + R<sub>f</sub> from both sides."
    ],
@@ -916,9 +944,10 @@
   "RNOT": {
    "type": "not",
    "label": "Risk is NOT variance / volatility per se,<br/>and NOT downside risk by itself",
-   "tags": "L1·L5",
+   "tags": "L1·L5·CAPM II",
    "details": [
-    "Two assets with the same volatility can carry opposite risk premia (see the A/B example)."
+    "Two assets with the same volatility can carry opposite risk premia (see the A/B example).",
+    "CAPM II: what matters is how an asset co-moves with the market portfolio; beta is a normalized measure of that covariance."
    ]
   },
   "SIGN": {
@@ -1857,9 +1886,10 @@
   "EMH": {
    "type": "beyond",
    "label": "Efficient Markets<br/>Hypothesis",
-   "tags": "RV",
+   "tags": "RV·CAPM II",
    "details": [
-    "Conditional expectation is the foundation for how information is reflected in prices; the notes return to this with the EMH."
+    "Conditional expectation is the foundation for how information is reflected in prices; the notes return to this with the EMH.",
+    "CAPM anomalies raise the central question: do prices fully reflect available information, or do these patterns represent predictable mispricing?"
    ]
   },
   "RNI": {
@@ -1906,17 +1936,18 @@
   "MCR": {
    "type": "key",
    "label": "Marginal risk = covariance<br/>∂σ<sub>p</sub><sup>2</sup>/∂w<sub>k</sub> = 2Cov(R<sub>k</sub>, R<sub>p</sub>)",
-   "tags": "MPT I",
+   "tags": "MPT I·CAPM II",
    "details": [
     "Differentiate σ<sub>p</sub><sup>2</sup> in w<sub>k</sub>: 2(w<sub>k</sub>σ<sub>k</sub><sup>2</sup> + Σ<sub>i≠k</sub> w<sub>i</sub>σ<sub>ik</sub>), which is 2Cov(R<sub>k</sub>, R<sub>p</sub>) by linearity of covariance.",
     "Related identity: σ<sub>p</sub><sup>2</sup> = Σ w<sub>i</sub>Cov(R<sub>i</sub>, R<sub>p</sub>), since Cov(R<sub>p</sub>, R<sub>p</sub>) = Var(R<sub>p</sub>).",
-    "Assets that covary strongly with the portfolio add the most risk; the idea is central to systematic-risk models like the CAPM."
+    "Assets that covary strongly with the portfolio add the most risk; the idea is central to systematic-risk models like the CAPM.",
+    "Finite version: add θ<sub>k</sub> of asset k financed at R<sub>f</sub>: Var[R<sub>p</sub> + θ<sub>k</sub>(R<sub>k</sub> − R<sub>f</sub>)] = σ<sub>p</sub><sup>2</sup> + θ<sub>k</sub><sup>2</sup>σ<sub>k</sub><sup>2</sup> + 2θ<sub>k</sub>Cov(R<sub>p</sub>, R<sub>k</sub>) ≈ σ<sub>p</sub><sup>2</sup> + 2θ<sub>k</sub>Cov(R<sub>k</sub>, R<sub>p</sub>)."
    ]
   },
   "MCRNOT": {
    "type": "not",
    "label": "An asset’s risk contribution is NOT<br/>its own variance in isolation",
-   "tags": "MPT I",
+   "tags": "MPT I·CAPM II",
    "details": [
     "A very volatile asset can add little portfolio risk if it is weakly correlated with the portfolio."
    ]
@@ -2111,15 +2142,16 @@
   "BETA": {
    "type": "def",
    "label": "Beta<br/>β<sub>i</sub> = Cov(R<sub>i</sub>, R<sub>I</sub>)/Var(R<sub>I</sub>)",
-   "tags": "CAPM I",
+   "tags": "CAPM I·CAPM II",
    "details": [
-    "An asset’s sensitivity (exposure) to the common factor, measured against the index return."
+    "An asset’s sensitivity (exposure) to the common factor, measured against the index return.",
+    "Sensitivity, exposure and loading are synonyms. β is a normalized measure of co-movement with the market portfolio."
    ]
   },
   "SIM": {
    "type": "key",
    "label": "Single-index model<br/>R<sub>i</sub> − R<sub>f</sub> = α<sub>i</sub> + β<sub>i</sub>(R<sub>I</sub> − R<sub>f</sub>) + ε<sub>i</sub>",
-   "tags": "CAPM I",
+   "tags": "CAPM I·CAPM II",
    "details": [
     "Proxy the factor with a broad market index (Wilshire 5000, Russell 3000, S&amp;P 500): R<sub>i</sub> = E[R<sub>i</sub>] + β<sub>i</sub>(R<sub>I</sub> − E[R<sub>I</sub>]) + ε<sub>i</sub>, then write in excess returns.",
     "α<sub>i</sub> = E[R<sub>i</sub> − R<sub>f</sub>] − β<sub>i</sub>E[R<sub>I</sub> − R<sub>f</sub>].",
@@ -2169,7 +2201,7 @@
   "MKT": {
    "type": "def",
    "label": "Market portfolio M<br/>all risky assets, value-weighted",
-   "tags": "CAPM I",
+   "tags": "CAPM I·CAPM II",
    "details": [
     "Every risky asset in the economy (stocks, bonds, real estate, art, …) in proportion to its market capitalization (shares outstanding × price)."
    ]
@@ -2177,7 +2209,7 @@
   "MKTT": {
    "type": "key",
    "label": "Market portfolio = tangency portfolio",
-   "tags": "CAPM I",
+   "tags": "CAPM I·CAPM II",
    "details": [
     "Same beliefs ⇒ everyone uses the same mean–volatility diagram and holds mean–variance efficient portfolios.",
     "Mutual fund theorem ⇒ everyone holds the same tangency portfolio.",
@@ -2195,29 +2227,237 @@
    ]
   },
   "CAPMR": {
-   "type": "res",
-   "label": "CAPM<br/>E[R<sub>i</sub>] − R<sub>f</sub> = β<sub>i</sub>(E[R<sub>M</sub>] − R<sub>f</sub>)",
-   "tags": "CAPM I",
+   "type": "key",
+   "label": "CAPM: expected return–beta<br/>E[R<sub>i</sub>] − R<sub>f</sub> = β<sub>i</sub>(E[R<sub>M</sub>] − R<sub>f</sub>)",
+   "tags": "CAPM I·CAPM II",
    "details": [
-    "A canonical equilibrium model: relates equilibrium expected returns to an asset’s exposure to systematic risk, its beta with the market portfolio.",
-    "Stated here as a conclusion; the next lecture shows that M being efficient leads to this β relation.",
-    "Despite equilibrium not being the course focus, the CAPM is a benchmark for both equilibrium and no-arbitrage approaches."
+    "For any return R<sub>i</sub>, with β<sub>i</sub> = Cov(R<sub>i</sub>, R<sub>M</sub>)/Var(R<sub>M</sub>), the loading of asset i on the market return.",
+    "A canonical equilibrium model: expected returns are determined by exposure (beta) to market risk, not by standalone variance.",
+    "A theoretical statement about expected returns; the time-series regression gives the empirical estimate of β.",
+    "Gives an economic interpretation to the single-factor structure of the single-index model.",
+    "Although equilibrium is not the course focus, the CAPM is a benchmark for both equilibrium and no-arbitrage approaches."
    ]
   },
   "CAPMNOT": {
    "type": "not",
    "label": "CAPM is a model of expected returns,<br/>NOT a literal pricing formula",
-   "tags": "CAPM I",
+   "tags": "CAPM I·CAPM II",
    "details": [
     "Despite its name, the CAPM is most often interpreted this way."
    ]
   },
   "APT": {
    "type": "beyond",
-   "label": "APT<br/>(no-arbitrage pricing)",
-   "tags": "CAPM I",
+   "label": "APT<br/>(multiple sources of risk)",
+   "tags": "CAPM I·CAPM II",
    "details": [
-    "Arbitrage pricing theory is the framework for no-arbitrage pricing models, in contrast to the equilibrium CAPM; the course returns to it later, with a precise definition of well-diversified."
+    "Arbitrage pricing theory is the framework for no-arbitrage pricing models, in contrast to the equilibrium CAPM.",
+    "It generalizes the CAPM by allowing multiple sources of risk; the course returns to it later, with a precise definition of well-diversified."
+   ]
+  },
+  "EQTR": {
+   "type": "res",
+   "label": "Same reward per unit of covariance<br/>(E[R<sub>i</sub>] − R<sub>f</sub>)/Cov(R<sub>i</sub>,R<sub>M</sub>) equal for all i",
+   "tags": "CAPM II",
+   "details": [
+    "Shift Δw<sub>k</sub> into asset k, financed at R<sub>f</sub>: ΔVar(R<sub>M</sub>) = 2Cov(R<sub>k</sub>, R<sub>M</sub>)Δw<sub>k</sub> and ΔE[R<sub>M</sub>] = Δw<sub>k</sub>(E[R<sub>k</sub>] − R<sub>f</sub>).",
+    "Intuitive proof: if asset i’s ratio exceeded j’s, investors would shift toward i and away from j, moving both prices; that cannot persist in equilibrium.",
+    "Formal proof: pick Δw<sub>j</sub> = −Δw<sub>i</sub>Cov(R<sub>i</sub>,R<sub>M</sub>)/Cov(R<sub>j</sub>,R<sub>M</sub>) so risk is unchanged. Since M is efficient, the mean cannot change either, which forces the ratios to be equal.",
+    "A negative change is ruled out too: reversing the sign of Δw<sub>i</sub> would raise the mean at the same variance.",
+    "Setting R<sub>j</sub> = R<sub>M</sub> makes the common ratio (E[R<sub>M</sub>] − R<sub>f</sub>)/Var(R<sub>M</sub>)."
+   ]
+  },
+  "QPR": {
+   "type": "interp",
+   "label": "Excess return = quantity × price of risk<br/>β<sub>i</sub> × (E[R<sub>M</sub>] − R<sub>f</sub>)",
+   "tags": "CAPM II",
+   "details": [
+    "β<sub>i</sub> measures the quantity of market risk; E[R<sub>M</sub>] − R<sub>f</sub> is the price of market risk."
+   ]
+  },
+  "LOWC": {
+   "type": "interp",
+   "label": "Low covariance ⇒ attractive asset<br/>⇒ high price, low expected return",
+   "tags": "CAPM II",
+   "details": [
+    "An asset with low covariance with the investor’s portfolio tends to pay off when the rest of the portfolio does poorly.",
+    "That makes it attractive and lowers its expected return (raises its price) in equilibrium, which motivates beta as the risk measure."
+   ]
+  },
+  "MVEB": {
+   "type": "res",
+   "label": "Any MV-efficient portfolio gives<br/>a beta representation",
+   "tags": "CAPM II",
+   "details": [
+    "The proof used only the mean–variance efficiency of the market portfolio.",
+    "The full set of equilibrium assumptions is needed only to establish that the market portfolio is efficient.",
+    "For efficient R<sub>p</sub>: E[R<sub>i</sub>] − R<sub>f</sub> = β<sub>i,p</sub>(E[R<sub>p</sub>] − R<sub>f</sub>) = Cov(R<sub>i</sub>,R<sub>p</sub>)(E[R<sub>p</sub>] − R<sub>f</sub>)/Var(R<sub>p</sub>)."
+   ]
+  },
+  "BEST": {
+   "type": "def",
+   "label": "Estimating beta<br/>time-series regression on R<sub>M,t</sub> − R<sub>f,t</sub>",
+   "tags": "CAPM II",
+   "details": [
+    "R<sub>i,t</sub> − R<sub>f,t</sub> = α<sub>i</sub> + β<sub>i</sub>(R<sub>M,t</sub> − R<sub>f,t</sub>) + ε<sub>i,t</sub>. β<sub>i</sub> is the slope of the fitted line.",
+    "R<sub>M,t</sub> − R<sub>f,t</sub> is called a risk factor, and β<sub>i</sub> is the loading on it.",
+    "In practice: daily, weekly or monthly data over several years, with a proxy for the market."
+   ],
+   "example": "Daily 2024 data, S&amp;P 500 as proxy (alpha, beta): Walmart −0.030, 0.398; Aflac −0.031, 0.406; Domino’s −0.011, 0.796."
+  },
+  "SBL": {
+   "type": "res",
+   "label": "SDF beta form<br/>E[R<sub>i</sub>] − R<sub>f</sub> = β<sub>i,m</sub>·λ<sub>m</sub>",
+   "tags": "CAPM II",
+   "details": [
+    "Multiply and divide −Cov(m, R<sub>i</sub>)/E[m] by Var(m).",
+    "β<sub>i,m</sub> = Cov(R<sub>i</sub>, m)/Var(m) is the quantity of risk; λ<sub>m</sub> = −Var(m)/E[m] is the price of risk."
+   ]
+  },
+  "CMP": {
+   "type": "res",
+   "label": "Cov(R<sub>i</sub>, m) = −b·Cov(R<sub>i</sub>, R<sub>p</sub>)<br/>b = E[m](E[R<sub>p</sub>] − R<sub>f</sub>)/Var(R<sub>p</sub>)",
+   "tags": "CAPM II",
+   "details": [
+    "Equate the SDF and efficient-portfolio expressions for expected excess returns; holds for all i.",
+    "Assets that covary strongly with the efficient portfolio covary strongly, with opposite sign (if E[R<sub>p</sub>] &gt; R<sub>f</sub>), with the SDF.",
+    "Both representations say a single underlying source of risk determines all expected excess returns."
+   ]
+  },
+  "MAFF": {
+   "type": "key",
+   "label": "CAPM as an SDF restriction<br/>m = a − bR<sub>M</sub>",
+   "tags": "CAPM II",
+   "details": [
+    "From Cov(R<sub>i</sub>, m + bR<sub>p</sub>) = 0 for all i: if any payoff can be replicated with traded assets, a variable with zero covariance with every traded return must be constant, so m + bR<sub>p</sub> = a.",
+    "The SDF is affine in the efficient portfolio’s return; under CAPM that portfolio is the market.",
+    "CAPM can be viewed as a restriction on the SDF."
+   ]
+  },
+  "CORRM": {
+   "type": "res",
+   "label": "Corr(m, R<sub>M</sub>) = −1",
+   "tags": "CAPM II",
+   "details": [
+    "Algebraically immediate once m is affine in R<sub>M</sub>.",
+    "High R<sub>M</sub> (good states) means low m; low R<sub>M</sub> (bad states) means high m."
+   ]
+  },
+  "ONED": {
+   "type": "interp",
+   "label": "All priced risk is one-dimensional,<br/>captured by the market portfolio",
+   "tags": "CAPM II",
+   "details": [
+    "R<sub>M</sub> captures all pricing-relevant variation in the SDF, which is why one factor can price all assets.",
+    "This is the model’s real economic content; the correlation of −1 is only the algebra."
+   ]
+  },
+  "BFROMM": {
+   "type": "res",
+   "label": "Beta form ⇔ SDF affine in R<sub>p</sub>",
+   "tags": "CAPM II",
+   "details": [
+    "Substitute m = a − bR<sub>p</sub> into E[m(1 + R<sub>i</sub>)] = 1 and use E[m] = 1/(1 + R<sub>f</sub>): E[R<sub>i</sub>] − R<sub>f</sub> = β<sub>i</sub>(1 + R<sub>f</sub>)b·Var(R<sub>p</sub>).",
+    "Applied to R<sub>p</sub> itself (β<sub>p</sub> = 1) this gives E[R<sub>p</sub>] − R<sub>f</sub> = (1 + R<sub>f</sub>)b·Var(R<sub>p</sub>), hence the beta form.",
+    "Expected excess returns are determined by covariance with a single portfolio if and only if the SDF is affine in that portfolio’s return.",
+    "The step-by-step expansion is marked optional in the notes."
+   ]
+  },
+  "PRR": {
+   "type": "interp",
+   "label": "λ<sub>m</sub> #lt; 0 matches a positive<br/>market risk premium",
+   "tags": "CAPM II",
+   "details": [
+    "λ<sub>m</sub> is negative because assets that covary positively with m pay off in bad states and so have low expected returns.",
+    "Under CAPM Var(m) = b<sup>2</sup>Var(R<sub>M</sub>), and covariance with m is proportional, with opposite sign, to covariance with R<sub>M</sub>.",
+    "Changes in the market risk premium reflect how strongly the SDF loads on the market return."
+   ]
+  },
+  "SML": {
+   "type": "def",
+   "label": "Security market line<br/>E[R] against β, slope E[R<sub>M</sub>] − R<sub>f</sub>",
+   "tags": "CAPM II",
+   "details": [
+    "The expected return–beta relation drawn in (β, µ) space.",
+    "Under CAPM all assets lie on an upward-sloping SML."
+   ]
+  },
+  "ALPHA": {
+   "type": "res",
+   "label": "CAPM prediction: all α<sub>i</sub> = 0",
+   "tags": "CAPM II",
+   "details": [
+    "Any deviation from the SML equals the regression intercept α.",
+    "Taking expectations of the regression gives E[R<sub>i</sub>] − R<sub>f</sub> = α<sub>i</sub> + β<sub>i</sub>(E[R<sub>M</sub>] − R<sub>f</sub>)."
+   ]
+  },
+  "GRS": {
+   "type": "def",
+   "label": "GRS test<br/>joint test that all alphas are zero",
+   "tags": "CAPM II",
+   "details": [
+    "Gibbons–Roll–Shanken hypothesis test.",
+    "Early tests were not a great success: average returns against individual-stock betas show a lot of dispersion, and the best-fitting line is too flat to pass through a plausible risk-free rate.",
+    "Individual stock returns are so volatile that you cannot reject that all average returns are the same, which gives the test low power."
+   ]
+  },
+  "SORT": {
+   "type": "res",
+   "label": "Sort stocks into portfolios<br/>⇒ higher test power",
+   "tags": "CAPM II",
+   "details": [
+    "Portfolios have lower idiosyncratic variance and more stable betas, so differences in average returns can be distinguished.",
+    "Fama–MacBeth (1973) and Black–Jensen–Scholes (1972) formed portfolios on estimated betas, then estimated portfolio betas in the following period.",
+    "Portfolios have since been formed on size, book/market, industry and other characteristics.",
+    "Procedure: pick a characteristic, sort stocks on it, estimate portfolio betas and average returns, plot the SML."
+   ]
+  },
+  "ANOM": {
+   "type": "res",
+   "label": "Anomalies: value, size,<br/>momentum, reversal",
+   "tags": "CAPM II",
+   "details": [
+    "Value: high book-to-market stocks earn high returns relative to the CAPM prediction.",
+    "Size: small stocks earn somewhat higher returns.",
+    "Momentum: stocks that did well over the past year earn high subsequent returns.",
+    "Reversal: stocks that did well over the past 3–5 years earn low returns."
+   ]
+  },
+  "ANOMI": {
+   "type": "interp",
+   "label": "Mispricing or missing risk?",
+   "tags": "CAPM II",
+   "details": [
+    "Possible readings: markets may not fully reflect available information, or a more general model of risk and return is needed."
+   ]
+  },
+  "ROLL": {
+   "type": "key",
+   "label": "Roll critique<br/>any test is a joint test with the proxy",
+   "tags": "CAPM II",
+   "details": [
+    "Roll (1977): the true market portfolio includes all risky assets, human capital too, but practice uses proxies such as stock indices.",
+    "The CAPM cannot be tested without observing the true market portfolio.",
+    "A test is jointly of the CAPM and of whether the proxy for R<sub>M</sub> is correct, so a failure may be the model or the measurement.",
+    "The notes conclude that the CAPM itself can never be rejected."
+   ]
+  },
+  "ONEF": {
+   "type": "res",
+   "label": "No single portfolio explains the<br/>cross section ⇒ multiple factors",
+   "tags": "CAPM II",
+   "details": [
+    "Shift the question from the right proxy to whether any traded portfolio captures all priced risk.",
+    "Empirically none appears to, which suggests priced risk is not one-dimensional."
+   ]
+  },
+  "BENCH": {
+   "type": "interp",
+   "label": "CAPM is best viewed as a benchmark",
+   "tags": "CAPM II",
+   "details": [
+    "Empirical tests give mixed support: many assets have non-zero alphas, and several anomalies are inconsistent with the CAPM.",
+    "Its value lies in showing how strong restrictions on the SDF translate into sharp predictions about expected excess returns."
    ]
   }
  },
@@ -3876,7 +4116,7 @@
    "MKTT",
    "CAPMR",
    "i",
-   "M efficient (shown next lecture)"
+   "M efficient"
   ],
   [
    "BETA",
@@ -3925,6 +4165,216 @@
    "RV",
    "m",
    "model uncertainty explicitly"
+  ],
+  [
+   "MCR",
+   "EQTR",
+   "b",
+   "marginal risk of a shift"
+  ],
+  [
+   "MKTT",
+   "EQTR",
+   "i",
+   "M is efficient"
+  ],
+  [
+   "EQTR",
+   "CAPMR",
+   "i",
+   "set R<sub>j</sub> = R<sub>M</sub>"
+  ],
+  [
+   "CAPMR",
+   "QPR",
+   "m",
+   "means"
+  ],
+  [
+   "EQTR",
+   "LOWC",
+   "m",
+   ""
+  ],
+  [
+   "CAPMR",
+   "MVEB",
+   "m",
+   "needs only efficiency"
+  ],
+  [
+   "SIM",
+   "BEST",
+   "b",
+   "regress on market"
+  ],
+  [
+   "PREM",
+   "SBL",
+   "b",
+   "× Var(m)/Var(m)"
+  ],
+  [
+   "MVEB",
+   "CMP",
+   "b",
+   "equate"
+  ],
+  [
+   "SBL",
+   "CMP",
+   "b",
+   "equate"
+  ],
+  [
+   "CMP",
+   "MAFF",
+   "i",
+   "replicable payoffs"
+  ],
+  [
+   "MAFF",
+   "CORRM",
+   "i",
+   ""
+  ],
+  [
+   "CORRM",
+   "ONED",
+   "m",
+   "economic content"
+  ],
+  [
+   "MVAL",
+   "ONED",
+   "m",
+   "high m = bad state"
+  ],
+  [
+   "MAFF",
+   "BFROMM",
+   "e",
+   "if and only if"
+  ],
+  [
+   "RQ",
+   "BFROMM",
+   "b",
+   "substitute m"
+  ],
+  [
+   "MAFF",
+   "PRR",
+   "m",
+   ""
+  ],
+  [
+   "SBL",
+   "PRR",
+   "m",
+   ""
+  ],
+  [
+   "CAPMR",
+   "SML",
+   "b",
+   "plot in (β, µ)"
+  ],
+  [
+   "SML",
+   "ALPHA",
+   "i",
+   "deviation = α"
+  ],
+  [
+   "BEST",
+   "ALPHA",
+   "m",
+   "intercept"
+  ],
+  [
+   "ALPHA",
+   "GRS",
+   "b",
+   "test jointly"
+  ],
+  [
+   "GRS",
+   "SORT",
+   "m",
+   "low power"
+  ],
+  [
+   "WDIV",
+   "SORT",
+   "m",
+   "lower idiosyncratic variance"
+  ],
+  [
+   "SORT",
+   "ANOM",
+   "m",
+   "sort on characteristics"
+  ],
+  [
+   "ALPHA",
+   "ANOM",
+   "x",
+   "✗ α ≠ 0"
+  ],
+  [
+   "ANOM",
+   "ANOMI",
+   "m",
+   ""
+  ],
+  [
+   "ANOMI",
+   "EMH",
+   "m",
+   "reflect information?"
+  ],
+  [
+   "ANOMI",
+   "ONEF",
+   "m",
+   "general model"
+  ],
+  [
+   "MKT",
+   "ROLL",
+   "m",
+   "true M unobservable"
+  ],
+  [
+   "ROLL",
+   "ONEF",
+   "m",
+   "change the question"
+  ],
+  [
+   "ONED",
+   "ONEF",
+   "m",
+   "tested"
+  ],
+  [
+   "ONEF",
+   "APT",
+   "m",
+   "multiple factors"
+  ],
+  [
+   "MAFF",
+   "BENCH",
+   "m",
+   "sharp predictions"
+  ],
+  [
+   "ROLL",
+   "BENCH",
+   "m",
+   ""
   ]
  ],
  "sym": {
@@ -3974,6 +4424,10 @@
   "WSTAR": "w*",
   "IMPL": "5,150 params",
   "MFT": "mutual fund thm",
-  "GEF": "global frontier"
+  "GEF": "global frontier",
+  "MCR": "marginal risk",
+  "RQ": "1 = E[m(1+R)]",
+  "MVAL": "m high = bad",
+  "ANOMI": "mispricing?"
  }
 }
